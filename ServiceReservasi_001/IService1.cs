@@ -7,14 +7,13 @@ using System.Text;
 
 namespace ServiceReservasi_001
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
     public interface IService1
     {
         [OperationContract]
         string pemesanan(string IDPemesanan, string NamaCustomer, string NoTelpon, int JumlahPemesanan, string IDLokasi);
         [OperationContract]
-        string editPemesanan(string IDPemesanan, string NamaCustomer);
+        string editPemesanan(string IDPemesanan, string NamaCustomer, string No_telpon);
         [OperationContract]
         string deletePemesanan(string IDPemesanan);
         [OperationContract]
@@ -25,9 +24,6 @@ namespace ServiceReservasi_001
         List<Pemesanan> Pemesanan();
     }
 
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
-    // You can add XSD files into the project. After building the project, you can directly use the data types defined there, with the namespace "ServiceReservasi_001.ContractType".
-
     [DataContract]
     public class CekLokasi
     {
@@ -36,7 +32,7 @@ namespace ServiceReservasi_001
         [DataMember]
         public string NamaLokasi { get; set; }
         [DataMember]
-        public string Deskripsi { get; set; }
+        public string DeskripsiSingkat { get; set; }
     }
 
     [DataContract]
@@ -50,7 +46,6 @@ namespace ServiceReservasi_001
         public string DeskripsiFull { get; set; }
         [DataMember]
         public int Kuota { get; set; }
-        public string IDPemesanan { get; internal set; }
     }
 
     [DataContract]
@@ -65,6 +60,6 @@ namespace ServiceReservasi_001
         [DataMember]
         public int JumlahPemesanan { get; set; }
         [DataMember]
-        public string IDLokasi { get; set; }
+        public string Lokasi { get; set; }
     }
 }
